@@ -31,13 +31,26 @@ input.onButtonPressed(Button.B, function () {
     }
 })
 radio.onReceivedValue(function (name, value) {
-    if (value == 2) {
-    	
+    if (value == 3 && vszam == 1 || (value == 1 && vszam == 2 || value == 2 && vszam == 3)) {
+        enpontom += -1
+    } else {
+        if (enpontom != vszam) {
+            enpontom += 1
+        }
     }
 })
 let vszam = 0
 let enpontom = 0
 enpontom = 0
 basic.forever(function () {
-    radio.setGroup(1)
+    radio.setGroup(2)
+    if (enpontom == 3) {
+        basic.showString("N")
+        enpontom = 0
+    } else {
+        if (enpontom == -3) {
+            basic.showString("V")
+            enpontom = 0
+        }
+    }
 })
